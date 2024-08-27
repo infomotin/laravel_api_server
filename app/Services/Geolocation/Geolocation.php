@@ -8,7 +8,7 @@ class Geolocation{
 
     private $map;
     private $satellite;
-    public function __construct(Map $map, Satellite $satellite)
+    public function __construct(string $address,Map $map, Satellite $satellite)
     {
         //
 

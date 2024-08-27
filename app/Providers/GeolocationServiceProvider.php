@@ -16,7 +16,7 @@ class GeolocationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Geolocation::class, function ($app) {
+        $this->app->bind(Geolocation::class, function ($app) {
             $map = new Map();
             $satellite = new Satellite();
 
