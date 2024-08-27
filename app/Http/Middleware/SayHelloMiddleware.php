@@ -17,11 +17,15 @@ class SayHelloMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        dump('SayHelloMiddleware');
-        // return $next($request);
-        return new JsonResponse([
-            'hello' => 'world',
-            'message' => 'SayHelloMiddleware',
-        ]);
+        // dump('SayHelloMiddleware');
+        return $next($request);
+        // return new JsonResponse([
+        //     'hello' => 'world',
+        //     'message' => 'SayHelloMiddleware',
+        // ]);
     }
+
+    // public function terminate(Request $request, $response){
+    //     dump('SayHelloMiddleware terminate');
+    // }
 }
