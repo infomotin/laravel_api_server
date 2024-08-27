@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\Geolocation\Geolocation;
+use App\Services\MAP\Map;
+use App\Services\Satellite\Satellite;
 
 class GeolocationServiceProvider extends ServiceProvider
 {
@@ -13,7 +16,12 @@ class GeolocationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(Geolocation::class, function ($app) {
+            $map = new Map();
+            $satellite = new Satellite();
+
+            return new Geolocation($map, $satellite);
+        });
     }
 
     /**
