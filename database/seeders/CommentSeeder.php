@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Database\Seeders\Traits\TruncateTable;
 use App\Models\Comment;
+use App\Models\Post;
 
 class CommentSeeder extends Seeder
 {
@@ -20,7 +21,9 @@ class CommentSeeder extends Seeder
     {
         $this->disableForeignKeys();
         $this->truncateTable('comments');
-        Comment::factory(100)->create();
+        Comment::factory(100)
+        ->for(Post::factory(10), 'post')
+        ->create();
         $this->enableForeignKeys();
     }
 }

@@ -6,6 +6,9 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Database\Seeders\Traits\TruncateTable;
 use App\Models\Post;
+use App\Models\Comment;
+use App\Models\User;
+use Database\Factories\Helpers\FactoryHelper;
 
 class PostSeeder extends Seeder
 {
@@ -24,8 +27,12 @@ class PostSeeder extends Seeder
         //     )->create();
 
         // Post::factory(100)->untitled()->create();
-        Post::factory(100)->create();
-
+        $posts = Post::factory(100)
+        // ->has(Comment::factory(10), 'comments')
+        ->create();
+        $posts->each(function(Post $post) {
+            $post->users()->sync([FactoryHelper::getRandomModelId(User::class)]);
+        });
         $this->enableForeignKeys();
     }
 }
