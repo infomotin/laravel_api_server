@@ -27,12 +27,12 @@ class PostSeeder extends Seeder
         //     )->create();
 
         // Post::factory(100)->untitled()->create();
-        $posts = Post::factory(100)
+        Post::factory(100)
         // ->has(Comment::factory(10), 'comments')
         ->create();
-        $posts->each(function(Post $post) {
-            $post->users()->sync([FactoryHelper::getRandomModelId(User::class)]);
-        });
+        // $posts->each(function(Post $post) {
+        //     $post->users()->sync([FactoryHelper::getRandomModelId(User::class)]);
+        // });
         $this->enableForeignKeys();
     }
 }

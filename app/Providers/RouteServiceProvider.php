@@ -47,6 +47,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+        //Router bingding for user methrod in controller
+        // Route::bind('user', function ($value) {
+        //     return 123;
+        // });
     }
 
     /**
