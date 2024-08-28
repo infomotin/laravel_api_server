@@ -11,10 +11,13 @@ class PostFactory extends Factory
      *
      * @return array
      */
+
+    protected $model = \App\Models\Post::class;
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->word,
+            'body' => [],
         ];
     }
 }

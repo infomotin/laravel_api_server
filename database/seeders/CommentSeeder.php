@@ -3,9 +3,14 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\Traits\DisableForeignKeys;
+use Database\Seeders\Traits\TruncateTable;
+use App\Models\Comment;
 
 class CommentSeeder extends Seeder
 {
+    use DisableForeignKeys;
+    use TruncateTable;
     /**
      * Run the database seeds.
      *
@@ -13,6 +18,9 @@ class CommentSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $this->disableForeignKeys();
+        $this->truncateTable('comments');
+        Comment::factory(100)->create();
+        $this->enableForeignKeys();
     }
 }
