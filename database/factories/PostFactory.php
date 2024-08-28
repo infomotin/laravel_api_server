@@ -20,4 +20,13 @@ class PostFactory extends Factory
             'body' => [],
         ];
     }
+
+    public function untitled()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'title' => 'untitle',
+            ];
+        });
+    }
 }
