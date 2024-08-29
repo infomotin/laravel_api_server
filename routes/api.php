@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -16,45 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/users', function (Request $request) {
-    // dump($request);
-    return new JsonResponse([
-        'data' => 'users'
-    ]);
-});
-
-Route::get('/users/{user}', function (Request $request, User $user) {
-    dump($request);
-    return new JsonResponse([
-        'data' => $user
-    ]);
-});
+Route::get('/users',[UserController::class,'index']);
+Route::get('/users/{user}', [UserController::class,'show']);
 //post request
-
-Route::post('/users/{user}', function (User $user) {
-    // dump($request);
-    return new JsonResponse([
-        'data' => 'Post Request '
-    ]);
-});
-
+Route::post('/users/{user}',[UserController::class,'store']);
 // patch users request
-
-Route::patch('/users/{user}', function (User $user) {
-    // dump($request);
-    return new JsonResponse([
-        'data' => 'patch request'
-    ]);
-});
-
+Route::patch('/users/{user}',[UserController::class,'update']);
 // delete users request
-
-Route::delete('/users/{user}', function (User $user) {
-    // dump($request);
-    return new JsonResponse([
-        'data' => 'Delete Request '
-    ]);
-});
+Route::delete('/users/{user}',[UserController::class,'destroy']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
