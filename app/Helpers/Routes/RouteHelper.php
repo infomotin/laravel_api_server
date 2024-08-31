@@ -9,7 +9,12 @@ class RouteHelper
         $dirIteratetor = new \RecursiveDirectoryIterator($folder);
         $it = new \RecursiveIteratorIterator($dirIteratetor);
         while ($it->valid()) {
-            if ($it->isFile() && $it->isReadable() && $it->current()->getExtension() === 'php' && !$it->isDot()) {
+            if (
+                $it->isFile()
+                && $it->isReadable()
+                && $it->current()->getExtension() === 'php'
+                && !$it->isDot()
+            ) {
                 require $it->key();
             }
             $it->next();
